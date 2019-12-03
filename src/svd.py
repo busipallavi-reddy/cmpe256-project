@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 import json
-from flask import Flask
+from flask import Flask, request
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 class Recommend():
     def __init__(self,similarity,user,N):
@@ -112,7 +114,7 @@ class Recommend():
 @app.route('/cosine')
 def getResponseForCosine():
 	predictedURLs = []
-	userID = 200
+	userID = int(request.args.get("uid"))
 	predictionNumber = 5
 	c_recommend = Recommend("cosine",userID,predictionNumber)
 	c_recommend.loadData("./datasets/MS_ratings_matrix.csv")
@@ -138,7 +140,7 @@ def getResponseForCosine():
 @app.route('/pearson')
 def getResponseForPearson():
 	predictedURLs = []
-	userID = 200
+	userID = int(request.args.get("uid"))
 	predictionNumber = 5
 	p_recommend = Recommend("pearson",userID,predictionNumber)
 	p_recommend.loadData("./datasets/MS_ratings_matrix.csv")
