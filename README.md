@@ -18,4 +18,9 @@ Run the flask aplication - svd.py at port 5000 using - python svd.py
 Test results at endpoint - localhost:5000/cosine and localhost:5000/pearson with userID.
 ```
 
-
+### Team Members
+```
+1. Busi Pallavi Reddy
+2. Maunil Swadas
+3. Sarthak Sugandhi
+```
