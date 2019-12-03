@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function submitForm(e) {
+			   e.preventDefault();
+  			 var uid = document.getElementById('uid').value;
+         var m = document.getElementById('similarity').value;
+  			 console.log(uid);
+         console.log(m);
+  			 var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("demo").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("GET", "http://127.0.0.1:5000/"+m+"?uid="+uid, true);
+          xhttp.setRequestHeader("Content-type", "application/json");
+          xhttp.send();
+}
+
+	</script>
+</head>
+<body>
+<header class="page-header">
+    <h1>Microsoft Logs URL Recommendation System</h1>
+</header>
+
+<form onsubmit="submitForm(event)">
+  Enter User ID:<br>
+  <input type="text" id="uid"><br>
+  Choose Similarity Method:<br>
+<input type="text" id="similarity"><br>
+   <input type="submit" value="Submit">
+</form>
+<p id="demo"></p>
+</body>
+</html>
